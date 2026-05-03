@@ -1,6 +1,8 @@
 # Indoor Positioning Project (Beginner-Friendly Guide)
 
-This project predicts indoor locations using WiFi and Bluetooth (BLE) signal strengths. It downloads a public dataset, prepares the data, trains machine learning models, and plots results.
+This project predicts indoor locations using WiFi and Bluetooth (BLE) signal strengths. It downloads the public "RSSI Dataset for Indoor Localization Fingerprinting", prepares the data, trains machine learning models, and plots results.
+
+For the final demo, the project focuses on Scenario 1 and Scenario 2 and compares WiFi-only positioning against WiFi+BLE fused positioning using mean distance error in meters. Lower error means better localization.
 
 The goal of this README is to explain what each folder and file does in very simple language.
 
@@ -62,6 +64,7 @@ The goal of this README is to explain what each folder and file does in very sim
   - prepare_both_datasets
   - run_full_evaluation, compare_results
   - plot_all_confusion_matrices, plot_accuracy_comparison
+  - run_scenario, run_demo_scenarios
 
 ### functions/load_data.py
 
@@ -171,6 +174,16 @@ Functions inside:
   - Creates a comparison table.
   - For classification: accuracy comparison.
   - For regression: mean distance error comparison.
+
+### functions/frontend_backend.py
+
+- Purpose: Clean backend wrapper for the Streamlit/frontend demo.
+- It exposes only Scenario 1 and Scenario 2 for the final presentation.
+- It returns:
+  - model-wise WiFi-only and WiFi+BLE mean distance error
+  - improvement in meters and percent
+  - normalized positioning score for presentation cards
+  - actual vs predicted coordinates for split-screen visualization
 
 ### functions/plots.py
 

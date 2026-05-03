@@ -12,6 +12,7 @@ We combine (x, y) into a single location label for classification.
 
 import os
 import io
+from functools import lru_cache
 import requests
 import numpy as np
 import pandas as pd
@@ -42,6 +43,7 @@ SCENARIOS = {
 }
 
 
+@lru_cache(maxsize=8)
 def download_xlsx(url: str) -> pd.ExcelFile:
     """
     Downloads an xlsx file from a URL and returns a pandas ExcelFile object.

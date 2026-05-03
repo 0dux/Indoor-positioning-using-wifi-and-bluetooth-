@@ -103,6 +103,23 @@ def create_fused_dataset(
         how="inner",
     )
 
+    # Guard: if WiFi and BLE grids differ, the inner merge silently drops rows.
+    # Catch this immediately so downstream metrics are not silently wrong.
+    if len(fused_db) != len(w_db):
+        dropped = len(w_db) - len(fused_db)
+        raise ValueError(
+            f"Fused database merge dropped {dropped} row(s). "
+            "WiFi and BLE database grids do not fully overlap. "
+            "Check that both technologies cover the same (x, y) positions."
+        )
+    if len(fused_test) != len(w_test):
+        dropped = len(w_test) - len(fused_test)
+        raise ValueError(
+            f"Fused test merge dropped {dropped} row(s). "
+            "WiFi and BLE test grids do not fully overlap. "
+            "Check that both technologies cover the same (x, y) positions."
+        )
+
     print(f"  ✓ Fused database: {fused_db.shape[0]} points × {fused_db.shape[1]} cols")
     print(f"  ✓ Fused tests:    {fused_test.shape[0]} points × {fused_test.shape[1]} cols")
 
