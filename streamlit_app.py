@@ -431,13 +431,13 @@ st.markdown(
     """
     <div class="app-header">
         <div>
-            <h1 class="app-title">Indoor Positioning Demo</h1>
+            <h1 class="app-title">Indoor Positioning</h1>
             <p class="app-subtitle">
                 Interactive comparison of WiFi-only fingerprinting and WiFi+BLE sensor fusion.
                 The system predicts indoor coordinates from RSSI fingerprints and measures localization error.
             </p>
         </div>
-        <div class="status-chip">Final demo scope: Scenario 1 & 2</div>
+        <div class="status-chip">Final scope: Scenario 1 & 2</div>
     </div>
     """,
     unsafe_allow_html=True,
